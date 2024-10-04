@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn1wba40g16pu"]
+
+[ext_resource type="PackedScene" uid="uid://dow42uw3v0pqb" path="res://Scenes/Spawner/spawner.tscn" id="1_1vk8n"]
+[ext_resource type="Script" path="res://Scenes/BombSpawner/bomb_spawner.gd" id="2_2arqc"]
+
+[node name="BombSpawner" instance=ExtResource("1_1vk8n")]
+script = ExtResource("2_2arqc")
+
+[node name="Timer" parent="." index="1"]
+wait_time = 0.7

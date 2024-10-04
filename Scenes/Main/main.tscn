@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctyoipje73rjk"]
+
+[ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_ipv40"]
+[ext_resource type="PackedScene" uid="uid://cfbqmv5fwi4o6" path="res://Scenes/Fish/fish.tscn" id="1_no4ra"]
+[ext_resource type="PackedScene" uid="uid://dow42uw3v0pqb" path="res://Scenes/Spawner/spawner.tscn" id="2_ou6an"]
+[ext_resource type="PackedScene" uid="uid://dn1wba40g16pu" path="res://Scenes/BombSpawner/bomb_spawner.tscn" id="3_a83ui"]
+[ext_resource type="Script" path="res://Scenes/Main/CanvasLayer.gd" id="3_u8qme"]
+[ext_resource type="AudioStream" uid="uid://dir8jgpjwlgkt" path="res://Sounds/Water.mp3" id="5_csm2o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2u7nf"]
+font_size = 81
+
+[sub_resource type="LabelSettings" id="LabelSettings_2j7ru"]
+font_size = 26
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ipv40")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1201.0
+offset_bottom = 699.0
+color = Color(0.235294, 0.494118, 0.717647, 0.839216)
+
+[node name="Spawner" parent="." instance=ExtResource("2_ou6an")]
+position = Vector2(210, -114)
+
+[node name="BombSpawner" parent="." instance=ExtResource("3_a83ui")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("3_u8qme")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 128.0
+offset_bottom = 65.0
+label_settings = SubResource("LabelSettings_2u7nf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -107.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "WASD to move
+Esc to menu"
+label_settings = SubResource("LabelSettings_2j7ru")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(590, 322)
+zoom = Vector2(1.495, 1.495)
+
+[node name="Fish" parent="." instance=ExtResource("1_no4ra")]
+position = Vector2(591, 385)
+
+[node name="Water" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_csm2o")
+volume_db = 0.99
+autoplay = true

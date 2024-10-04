@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ded12evfcnonk"]
+
+[ext_resource type="Script" path="res://Scenes/Food/Food.gd" id="1_cjcw6"]
+[ext_resource type="Texture2D" uid="uid://cnn6inpeceau5" path="res://Assets/Food.png" id="2_hgdhj"]
+[ext_resource type="AudioStream" uid="uid://2alqry0jff03" path="res://Sounds/Eat.mp3" id="3_8mbdv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7wjos"]
+radius = 15.0333
+
+[node name="Food" type="Area2D"]
+script = ExtResource("1_cjcw6")
+speed = 250
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7wjos")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, -1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_hgdhj")
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8mbdv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

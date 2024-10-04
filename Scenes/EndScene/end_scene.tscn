@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjmi6kbxwhfid"]
+
+[ext_resource type="Script" path="res://Scenes/EndScene/end_scene.gd" id="1_xdg1f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wg0c6"]
+font_size = 51
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8u5h"]
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_wk1jb"]
+font_size = 31
+
+[sub_resource type="Animation" id="Animation_16vad"]
+resource_name = "end_screen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbdo0"]
+_data = {
+"end_screen": SubResource("Animation_16vad")
+}
+
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_xdg1f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.654902, 0.533333, 0.745098, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -76.0
+offset_right = 354.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Want to try again ?!"
+label_settings = SubResource("LabelSettings_wg0c6")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "C to Try again"
+label_settings = SubResource("LabelSettings_x8u5h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Esc to Main menu"
+label_settings = SubResource("LabelSettings_wk1jb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tbdo0")
+}
+autoplay = "end_screen"

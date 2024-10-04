@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6oeyke1nvbsj"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_st8ou"]
+[ext_resource type="Texture2D" uid="uid://dngl7wtu323ru" path="res://Assets/New folder/FishLogo1.png" id="2_72crl"]
+[ext_resource type="Texture2D" uid="uid://72ki643whak5" path="res://Assets/New folder/FishLogo2.png" id="3_xqr86"]
+[ext_resource type="AudioStream" uid="uid://cii2jhug8ee2k" path="res://Sounds/Background.mp3" id="4_qh6vp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2gvd"]
+font_size = 66
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6n1er"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_72crl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xqr86")
+}],
+"loop": true,
+"name": &"FishLogo",
+"speed": 2.0
+}]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_st8ou")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1201.0
+offset_bottom = 699.0
+color = Color(0.235294, 0.494118, 0.717647, 0.839216)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -20.0
+offset_right = 433.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "Press ENTER to continue"
+label_settings = SubResource("LabelSettings_y2gvd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FishFoodLogo" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(566, 158)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_6n1er")
+animation = &"FishLogo"
+autoplay = "FishLogo"
+frame_progress = 0.649644
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+modulate = Color(0.976471, 0.290196, 0.12549, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 27.0
+offset_right = 174.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "Start"
+flat = true
+
+[node name="Exit" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 0.14902, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = 143.0
+offset_right = 178.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "Exit"
+flat = true
+
+[node name="IntroTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qh6vp")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]
